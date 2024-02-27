@@ -11,7 +11,7 @@ namespace RISCV
     typedef uint8_t opcode;
     class Instruction
     {
-    private:
+    protected:
         iword m_instruction_word{0};
 
     public:
