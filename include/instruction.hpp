@@ -9,77 +9,261 @@ namespace RISCV
 {
     typedef uint32_t iword;
     typedef uint8_t opcode;
+    /**
+     * @brief Represents an instruction in the TesserRISC architecture.
+     */
     class Instruction
     {
     protected:
         iword m_instruction_word{0};
 
     public:
+        /**
+         * @brief Gets the opcode of the instruction.
+         * @return The opcode of the instruction.
+         */
         opcode get_opcode(void);
-        uint8_t get_rs1();
-        uint8_t get_rs2();
-        uint8_t get_rd();
+    };
+
+    /**
+     * @brief Represents an R-type instruction.
+     *
+     * This class inherits from the Instruction class and provides methods to access
+     * the fields of an R-type instruction, such as the first source register (rs1),
+     * second source register (rs2),destination register (rd), 3bit opcode extension
+     * (funct3) and 7 bit opcode extension (funct7).
+     *
+     * +--------+-----+-----+--------+------+-------+
+     * | funct7 | rs2 | rs1 | funct3 |  rd  | opcode|
+     * +--------+-----+-----+--------+------+-------+
+     */
+    class RTypeInstruction : Instruction
+    {
+    public:
+        /**
+         * @brief Get the destination register (rd) of the R-type instruction.
+         *
+         * @return The destination register (rd).
+         */
+        RegisterAlias get_rd();
+
+        /**
+         * @brief Get the first source register (rs1) of the R-type instruction.
+         *
+         * @return The first source register (rs1).
+         */
+        RegisterAlias get_rs1();
+
+        /**
+         * @brief Get the second source register (rs2) of the R-type instruction.
+         *
+         * @return The first source register (rs2).
+         */
+        RegisterAlias get_rs2();
+
+        /**
+         * @brief Get the funct3 field opcode extension value of the R-type instruction.
+         *
+         * @return The funct3 field value.
+         */
         uint8_t get_funct3();
+
+        /**
+         * @brief Get the funct7 field opcode extension value of the R-type instruction.
+         *
+         * @return The funct7 field value.
+         */
         uint8_t get_funct7();
     };
 
-    class RTypeInstruction : Instruction
-    {
-    private:
-    public:
-
-
-    };
-
+    /**
+     * @brief Represents an I-type instruction.
+     *
+     * This class inherits from the Instruction class and provides methods to access
+     * the fields of an I-type instruction, such as the source register (rs1),
+     * destination register (rd), 3 bit opcode extension (funct3), and immediate value (imm).
+     *
+     * +---------------+-----+--------+--------+------+
+     * |   imm[11:0]   | rs1 | funct3 |   rd   |opcode|
+     * +---------------+-----+--------+--------+------+
+     */
     class ITypeInstruction : Instruction
     {
     private:
     public:
-        uint8_t get_rs1();
-        uint8_t get_rd();
+        /**
+         * @brief Get the source register (rs1) of the I-type instruction.
+         *
+         * @return The source register (rs1).
+         */
+        RegisterAlias get_rs1();
+
+        /**
+         * @brief Get the destination register (rd) of the I-type instruction.
+         *
+         * @return The destination register (rd).
+         */
+        RegisterAlias get_rd();
+
+        /**
+         * @brief Get the function code (funct3) of the I-type instruction.
+         *
+         * @return The function code (funct3).
+         */
         uint8_t get_funct3();
+
+        /**
+         * @brief Get the immediate value (imm) of the I-type instruction.
+         *
+         * @return The immediate value (imm).
+         */
         uint16_t get_imm();
     };
 
+    /**
+     * @brief Represents an S-Type instruction.
+     *
+     * This class inherits from the Instruction class and provides methods to access
+     * the fields of an S-type instruction, such as the first source register (rs1),
+     * second source register, destination register (rd) and immediate value (imm).
+     *
+     * +---------+-----+-----+--------+----------+-------+
+     * |imm[11:5]| rs2 | rs1 | funct3 | imm[4:0] | opcode|
+     * +---------+-----+-----+--------+----------+-------+
+     *
+     */
     class STypeInstruction : Instruction
     {
     public:
-        uint8_t get_rs1();
-        uint8_t get_rs2();
-        uint8_t get_rd();
+        /**
+         * @brief Get the first source register (rs1) of the S-type instruction.
+         *
+         * @return The first source register (rs1).
+         */
+        RegisterAlias get_rs1();
+
+        /**
+         * @brief Get the second source register (rs2) of the S-type instruction.
+         *
+         * @return The first source register (rs2).
+         */
+        RegisterAlias get_rs2();
+
+        /**
+         * @brief Get the destination register (rd) of the S-type instruction.
+         *
+         * @return The destination register (rd).
+         */
+        RegisterAlias get_rd();
+
+        /**
+         * @brief Get the immediate value of the S-type instruction.
+         *
+         * @return The immediate value.
+         */
         uint16_t get_imm();
     };
 
+    /**
+     * @brief Represents a B-type instruction.
+     *
+     * This class inherits from the Instruction class and provides methods to access
+     * the fields of an B-type instruction, such as the first source register (rs1),
+     * second source register, and immediate value (imm).
+     *
+     * +---------+-----------+-----+-----+--------+----------+---------+--------+
+     * | imm[12] | imm[10:5] | rs2 | rs1 | funct3 | imm[4:1] | imm[11] | opcode |
+     * +---------+-----------+-----+-----+--------+----------+---------+--------+
+     *
+     */
     class BTypeInstruction : Instruction
     {
     public:
-        uint8_t get_rs1();
-        uint8_t get_rs2();
-        uint8_t get_rd();
+        /**
+         * @brief Get the first source register (rs1) of the B-type instruction.
+         *
+         * @return The first source register (rs1).
+         */
+        RegisterAlias get_rs1();
+
+        /**
+         * @brief Get the second source register (rs2) of the B-type instruction.
+         *
+         * @return The first source register (rs2).
+         */
+        RegisterAlias get_rs2();
+
+        /**
+         * @brief Get the func3 3 bit opcode extension of the B-type instruction.
+         *
+         * @return The func3 field.
+         */
+        uint8_t get_funct3();
+
+        /**
+         * @brief Get the immediate value of the B-type instruction.
+         *
+         * @return The immediate value.
+         */
         uint16_t get_imm();
     };
 
+    /**
+     * @brief Represents a U-type instruction.
+     *
+     * This class inherits from the Instruction class and provides methods to access
+     * the fields of an U-type instruction, such as the destination register (rd),
+     * and immediate value (imm).
+     *
+     * +------------------------------------+--+------+
+     * |               imm[31:12]           |rd|opcode|
+     * +------------------------------------+--+------+
+     *
+     */
     class UTypeInstruction : Instruction
     {
     public:
-        uint8_t get_rd();
+        /**
+         * @brief Get the destination register (rd) of the U-type instruction.
+         *
+         * @return The destination register (rd).
+         */
+        RegisterAlias get_rd();
+
+        /**
+         * @brief Get the immediate value of the U-type instruction.
+         *
+         * @return The immediate value.
+         */
         uint32_t get_imm();
     };
 
+    /**
+     * @brief Represents a J-type instruction.
+     *
+     * This class inherits from the Instruction class and provides methods to access
+     * the fields of an J-type instruction, such as the destination register (rd),
+     * and immediate value (imm).
+     *
+     * +-------+---------+------------------+--+------+
+     * |imm[20]|imm[10:1]|imm[11]|imm[19:12]|rd|opcode|
+     * +-------+---------+-------+----------+--+------+
+     */
     class JTypeInstruction : Instruction
     {
-        uint8_t get_rd();
-        uint32_t get_imm();
-    };
+        /**
+         * @brief Get the destination register (rd) of the J-type instruction.
+         *
+         * @return The destination register (rd).
+         */
+        RegisterAlias get_rd();
 
-    class R4TypeInstruction : Instruction
-    {
-        uint8_t get_fd();
-        uint8_t get_funct3();
-        uint8_t get_fs1();
-        uint8_t get_fs2();
-        uint8_t get_funct2();
-        uint8_t get_fs3();
+        /**
+         * @brief Get the immediate value of the U-type instruction.
+         *
+         * @return The immediate value.
+         */
+        uint32_t get_imm();
     };
 
 }
