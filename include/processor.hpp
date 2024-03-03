@@ -5,7 +5,7 @@
 namespace RISCV
 {
     const int NUM_REGISTERS = 32;
-    enum REG_ALIAS
+    enum class RegisterAlias : uint8_t
     {
         zero = 0,
         ra,
@@ -40,7 +40,6 @@ namespace RISCV
         t5,
         t6
     };
-
     class CPU
     {
     private:
