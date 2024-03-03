@@ -18,6 +18,10 @@ namespace RISCV
         iword m_instruction_word{0};
 
     public:
+        Instruction(uint_least32_t t_instruction_word)
+        {
+            this->m_instruction_word = static_cast<RISCV::iword>(t_instruction_word);
+        }
         /**
          * @brief Gets the opcode of the instruction.
          * @return The opcode of the instruction.
@@ -40,6 +44,7 @@ namespace RISCV
     class RTypeInstruction : Instruction
     {
     public:
+        using Instruction::Instruction;
         /**
          * @brief Get the destination register (rd) of the R-type instruction.
          *
@@ -91,6 +96,7 @@ namespace RISCV
     {
     private:
     public:
+        using Instruction::Instruction;
         /**
          * @brief Get the source register (rs1) of the I-type instruction.
          *
@@ -135,6 +141,7 @@ namespace RISCV
     class STypeInstruction : Instruction
     {
     public:
+        using Instruction::Instruction;
         /**
          * @brief Get the first source register (rs1) of the S-type instruction.
          *
@@ -179,6 +186,7 @@ namespace RISCV
     class BTypeInstruction : Instruction
     {
     public:
+        using Instruction::Instruction;
         /**
          * @brief Get the first source register (rs1) of the B-type instruction.
          *
@@ -223,6 +231,7 @@ namespace RISCV
     class UTypeInstruction : Instruction
     {
     public:
+        using Instruction::Instruction;
         /**
          * @brief Get the destination register (rd) of the U-type instruction.
          *
@@ -251,6 +260,7 @@ namespace RISCV
      */
     class JTypeInstruction : Instruction
     {
+        using Instruction::Instruction;
         /**
          * @brief Get the destination register (rd) of the J-type instruction.
          *
