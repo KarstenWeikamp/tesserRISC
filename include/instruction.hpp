@@ -9,6 +9,12 @@ namespace RISCV
 {
     typedef uint32_t iword;
     typedef uint8_t opcode;
+
+    RegisterAlias get_rd(iword t_iword);
+    RegisterAlias get_rs1(iword t_iword);
+    RegisterAlias get_rs2(iword t_iword);
+    uint8_t get_funct3(iword t_iword);
+
     /**
      * @brief Represents an instruction in the TesserRISC architecture.
      */
@@ -254,7 +260,7 @@ namespace RISCV
      * the fields of an J-type instruction, such as the destination register (rd),
      * and immediate value (imm).
      *
-     * +-------+---------+------------------+--+------+
+     * +-------+---------+-------+----------+--+------+
      * |imm[20]|imm[10:1]|imm[11]|imm[19:12]|rd|opcode|
      * +-------+---------+-------+----------+--+------+
      */
