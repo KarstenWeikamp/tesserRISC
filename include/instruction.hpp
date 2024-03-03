@@ -26,7 +26,7 @@ namespace RISCV
          * @brief Gets the opcode of the instruction.
          * @return The opcode of the instruction.
          */
-        opcode get_opcode(void);
+        virtual opcode get_opcode(void);
     };
 
     /**
