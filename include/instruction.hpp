@@ -24,7 +24,7 @@ namespace RISCV
         iword m_instruction_word{0};
 
     public:
-        Instruction(uint_least32_t t_instruction_word)
+        Instruction(uint32_t t_instruction_word)
         {
             this->m_instruction_word = static_cast<RISCV::iword>(t_instruction_word);
         }
