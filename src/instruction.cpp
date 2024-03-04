@@ -139,7 +139,7 @@ namespace RISCV
     {
         uint16_t imm0_4 = (this->m_instruction_word >> 7) & BITMASK0_4;
         uint16_t imm5_11 = (this->m_instruction_word >> 25) & BITMASK0_6;
-        return imm0_4 & (imm5_11 << 5);
+        return imm0_4 | (imm5_11 << 5);
     }
 
     RegisterAlias BTypeInstruction::get_rs1()
@@ -165,6 +165,6 @@ namespace RISCV
         uint16_t imm_4_1 = (this->m_instruction_word >> 8) & BITMASK0_3;
         uint16_t imm_10_5 = (this->m_instruction_word >> 25) & BITMASK0_6;
         uint16_t imm_12 = (this->m_instruction_word >> 31) & BITMASK0_0;
-        return imm_0 & (imm_4_1 << 1) & (imm_10_5 << 5) & (imm_12 << 12);
+        return imm_0 | (imm_4_1 << 1) | (imm_10_5 << 5) | (imm_12 << 12);
     }
 }

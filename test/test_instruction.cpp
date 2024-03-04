@@ -78,7 +78,7 @@ TEST_CASE("Test STypeInstruction class", "[instructions]")
     RISCV::RegisterAlias expected_rs1 = static_cast<RISCV::RegisterAlias>(0x08);
     RISCV::RegisterAlias expected_rs2 = static_cast<RISCV::RegisterAlias>(0x03);
     uint8_t expected_func3 = 0x05;
-    uint16_t expected_imm = 0x0123;
+    uint16_t expected_imm = 0x012C;
     REQUIRE(instruction.get_rs1() == expected_rs1);
     REQUIRE(instruction.get_rs2() == expected_rs2);
     REQUIRE(instruction.get_funct3() == expected_func3);
@@ -91,7 +91,7 @@ TEST_CASE("Test BTypeInstruction class", "[instructions]")
     RISCV::RegisterAlias expected_rs1 = static_cast<RISCV::RegisterAlias>(0x08);
     RISCV::RegisterAlias expected_rs2 = static_cast<RISCV::RegisterAlias>(0x03);
     uint8_t expected_func3 = 0x05;
-    uint16_t expected_imm = 0x0123;
+    uint16_t expected_imm = 0x012C;
     REQUIRE(instruction.get_rs1() == expected_rs1);
     REQUIRE(instruction.get_rs2() == expected_rs2);
     REQUIRE(instruction.get_funct3() == expected_func3);
