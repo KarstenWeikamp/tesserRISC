@@ -5,7 +5,7 @@
 #define BITMASK0_4 0b00011111
 #define BITMASK0_5 0b00111111
 #define BITMASK0_6 0b01111111
-#define BITMASK0_11 0b0000111111111111 
+#define BITMASK0_11 0b0000111111111111
 
 namespace RISCV
 {
@@ -117,5 +117,26 @@ namespace RISCV
     uint16_t ITypeInstruction::get_imm()
     {
         return (this->m_instruction_word >> 20) & BITMASK0_11;
+    }
+
+    RegisterAlias STypeInstruction::get_rs1()
+    {
+        return RISCV::get_rs1(this->m_instruction_word);
+    }
+
+    RegisterAlias STypeInstruction::get_rs2()
+    {
+        return RISCV::get_rs2(this->m_instruction_word);
+    }
+
+    uint8_t STypeInstruction::get_funct3()
+    {
+        return RISCV::get_funct3(this->m_instruction_word);
+    }
+    uint16_t STypeInstruction::get_imm()
+    {
+        uint16_t imm0_4 = (this->m_instruction_word >> 7) & BITMASK0_4;
+        uint16_t imm5_11 = (this->m_instruction_word >> 25) & BITMASK0_6;
+        return imm0_4 & (imm5_11 << 5);
     }
 }
