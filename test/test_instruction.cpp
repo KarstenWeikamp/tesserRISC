@@ -38,7 +38,6 @@ TEST_CASE("Test RTypeInstruction class", "[instruction]")
     RISCV::RegisterAlias expected_rs1 = static_cast<RISCV::RegisterAlias>(0x0A);
     REQUIRE(instruction2.get_rs1() == expected_rs1);
 
-    RISCV::RTypeInstruction longinstruction(0xE9C446B0570F207204A42D23755B1319);
 }
 
 TEST_CASE("Test ITypeInstruction class", "[instruction]")
