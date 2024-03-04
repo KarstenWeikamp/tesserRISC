@@ -261,6 +261,7 @@ namespace RISCV
      */
     class JTypeInstruction : Instruction
     {
+    public:
         using Instruction::Instruction;
         /**
          * @brief Get the destination register (rd) of the J-type instruction.
