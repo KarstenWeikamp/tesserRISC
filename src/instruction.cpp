@@ -1,7 +1,9 @@
 #include "instruction.hpp"
 #include "processor.hpp"
 
+#define BITMASK0_0 0b00000001
 #define BITMASK0_2 0b00000111
+#define BITMASK0_3 0b00001111
 #define BITMASK0_4 0b00011111
 #define BITMASK0_5 0b00111111
 #define BITMASK0_6 0b01111111
@@ -138,5 +140,31 @@ namespace RISCV
         uint16_t imm0_4 = (this->m_instruction_word >> 7) & BITMASK0_4;
         uint16_t imm5_11 = (this->m_instruction_word >> 25) & BITMASK0_6;
         return imm0_4 & (imm5_11 << 5);
+    }
+
+    RegisterAlias BTypeInstruction::get_rs1()
+    {
+        return RISCV::get_rs1(this->m_instruction_word);
+    }
+
+    RegisterAlias BTypeInstruction::get_rs2()
+    {
+        return RISCV::get_rs2(this->m_instruction_word);
+    }
+
+    uint8_t BTypeInstruction::get_funct3()
+    {
+        return RISCV::get_funct3(this->m_instruction_word);
+    }
+
+    uint16_t BTypeInstruction::get_imm()
+    {
+        // B-type instruction immediate must always encode multiples of two
+        // as the immediates are adresses, so bit 0 is always 0.
+        uint16_t imm_0 = 0x0;
+        uint16_t imm_4_1 = (this->m_instruction_word >> 8) & BITMASK0_3;
+        uint16_t imm_10_5 = (this->m_instruction_word >> 25) & BITMASK0_6;
+        uint16_t imm_12 = (this->m_instruction_word >> 31) & BITMASK0_0;
+        return imm_0 & (imm_4_1 << 1) & (imm_10_5 << 5) & (imm_12 << 12);
     }
 }
