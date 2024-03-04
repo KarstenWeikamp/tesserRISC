@@ -163,17 +163,12 @@ namespace RISCV
         RegisterAlias get_rs2();
 
         /**
-         * @brief Get the destination register (rd) of the S-type instruction.
+         * @brief Get the funct3 field opcode extension value of the R-type instruction.
          *
-         * @return The destination register (rd).
+         * @return The funct3 field value.
          */
-        RegisterAlias get_rd();
+        uint8_t get_funct3();
 
-        /**
-         * @brief Get the immediate value of the S-type instruction.
-         *
-         * @return The immediate value.
-         */
         uint16_t get_imm();
     };
 

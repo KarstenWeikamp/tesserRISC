@@ -2,10 +2,10 @@
 #include "processor.hpp"
 
 #define BITMASK0_2 0b00000011
+#define BITMASK0_4 0b00011111
 #define BITMASK0_5 0b00111111
 #define BITMASK0_6 0b01111111
 #define BITMASK0_11 0b0000111111111111 
-
 
 namespace RISCV
 {
@@ -20,7 +20,7 @@ namespace RISCV
      */
     RegisterAlias get_rd(iword t_iword)
     {
-        return (RegisterAlias)((t_iword >> 7) & BITMASK0_5);
+        return (RegisterAlias)((t_iword >> 7) & BITMASK0_4);
     }
 
     /**
@@ -34,7 +34,7 @@ namespace RISCV
      */
     RegisterAlias get_rs1(iword t_iword)
     {
-        return (RegisterAlias)((t_iword >> 15) & BITMASK0_5);
+        return (RegisterAlias)((t_iword >> 15) & BITMASK0_4);
     }
 
     /**
@@ -48,7 +48,7 @@ namespace RISCV
      */
     RegisterAlias get_rs2(iword t_iword)
     {
-        return (RegisterAlias)((t_iword >> 20) & BITMASK0_5);
+        return (RegisterAlias)((t_iword >> 20) & BITMASK0_4);
     }
 
     /**
@@ -73,8 +73,6 @@ namespace RISCV
     {
         return (opcode)(this->m_instruction_word & BITMASK0_6);
     }
-
-
 
     RegisterAlias RTypeInstruction::get_rd()
     {
