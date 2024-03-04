@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: 🧪Unit Tests
 
 on:
   push:
@@ -27,11 +27,3 @@ jobs:
         run: |
           cd build/test
           ./tests
-      - name: ⚙️ configure build
-        run: |
-          cd build
-          cmake ..
-      - name: 🛠️ build
-        run: |
-          cd build
-          cmake --build .
