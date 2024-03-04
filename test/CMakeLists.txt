@@ -6,7 +6,7 @@ Include(FetchContent)
 FetchContent_Declare(
   Catch2
   GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-  GIT_TAG        v3.5.0 # or a later release
+  GIT_TAG        v3.5.3
 )
 
 FetchContent_MakeAvailable(Catch2)
@@ -20,11 +20,6 @@ include_directories(${CMAKE_SOURCE_DIR}/../include)
 
 # Gather all source files from the 'src' directory
 file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/../src/*.cpp")
-
-# Add compiler flags for debug mode
-set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
 
 # Setup Catch2 Testing Environment
 file(GLOB CATCH_TESTS "*.cpp")
