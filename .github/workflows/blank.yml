@@ -1,0 +1,25 @@
+name: 🛠️Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: ⚙️ configure build
+        run: |
+          mkdir -p build
+          cd build
+          cmake ..
+      - name: 🛠️ build
+        run: |
+          cd build
+          cmake --build .
+
