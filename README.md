@@ -13,4 +13,4 @@ A simple [RISC-V](https://riscv.org/wp-content/uploads/2017/05/riscv-spec-v2.2.p
 
 ## License
 
-This project is licensed under the [GPL v3 License](LICENSE).
+This project is licensed under the [GPL-3.0 License](LICENSE).
