@@ -14,16 +14,24 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Configure Test
+      - name: ⚙️ configure unit test
         run: |
           mkdir -p build/test
           cd build/test
           cmake ../../test
-      - name: build test
+      - name: 🛠️ build unit test
         run: |
           cd build/test
           cmake --build .
-      - name: run test
+      - name: 🧪 run unit test
         run: |
           cd build/test
           ./tests
+      - name: ⚙️ configure build
+        run: |
+          cd build
+          cmake ..
+      - name: 🛠️ build
+        run: |
+          cd build
+          cmake --build .
