@@ -1,7 +1,7 @@
 #include "instruction.hpp"
 #include "processor.hpp"
 
-#define BITMASK0_2 0b00000011
+#define BITMASK0_2 0b00000111
 #define BITMASK0_4 0b00011111
 #define BITMASK0_5 0b00111111
 #define BITMASK0_6 0b01111111
