@@ -97,3 +97,21 @@ TEST_CASE("Test BTypeInstruction class", "[instructions]")
     REQUIRE(instruction.get_funct3() == expected_func3);
     REQUIRE(instruction.get_imm() == expected_imm);
 }
+
+TEST_CASE("Test UTypeInstruction class", "[instructions]")
+{
+    RISCV::UTypeInstruction instruction(0x12345678);
+    RISCV::RegisterAlias expected_rd = static_cast<RISCV::RegisterAlias>(0x0C);
+    uint32_t expected_imm = 0x12345;
+    REQUIRE(instruction.get_rd() == expected_rd);
+    REQUIRE(instruction.get_imm() == expected_imm);
+}
+
+TEST_CASE("Test JTypeInstruction", "[instructions]")
+{
+    RISCV::JTypeInstruction instruction(0x12345678);
+    RISCV::RegisterAlias expected_rd = static_cast<RISCV::RegisterAlias>(0x0C);
+    uint32_t expected_imm = 0x45922;
+    REQUIRE(instruction.get_rd() == expected_rd);
+    REQUIRE(instruction.get_imm() == expected_imm);
+}

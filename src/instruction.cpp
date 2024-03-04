@@ -7,7 +7,10 @@
 #define BITMASK0_4 0b00011111
 #define BITMASK0_5 0b00111111
 #define BITMASK0_6 0b01111111
+#define BITMASK0_7 0b11111111
+#define BITMASK0_9 0b0000011111111111
 #define BITMASK0_11 0b0000111111111111
+#define BITMASK0_19 0b00001111111111111111111
 
 namespace RISCV
 {
@@ -166,5 +169,30 @@ namespace RISCV
         uint16_t imm_10_5 = (this->m_instruction_word >> 25) & BITMASK0_6;
         uint16_t imm_12 = (this->m_instruction_word >> 31) & BITMASK0_0;
         return imm_0 | (imm_4_1 << 1) | (imm_10_5 << 5) | (imm_12 << 12);
+    }
+
+    RegisterAlias UTypeInstruction::get_rd()
+    {
+        return RISCV::get_rd(this->m_instruction_word);
+    }
+
+    uint32_t UTypeInstruction::get_imm()
+    {
+        return (this->m_instruction_word >> 12) & BITMASK0_19;
+    }
+
+    RegisterAlias JTypeInstruction::get_rd()
+    {
+        return RISCV::get_rd(this->m_instruction_word);
+    }
+
+    uint32_t JTypeInstruction::get_imm()
+    {
+        uint32_t imm0 = 0x0;
+        uint32_t imm_10_1 = (this->m_instruction_word >> 21) & BITMASK0_9;
+        uint32_t imm_11 = (this->m_instruction_word >> 20) & BITMASK0_0;
+        uint32_t imm_19_12 = (this->m_instruction_word >> 12) & BITMASK0_7;
+        uint32_t imm_20 = (this->m_instruction_word >> 31) & BITMASK0_0;
+        return imm0 | (imm_10_1 << 1) | (imm_11 << 11) | (imm_19_12 << 12) | (imm_20 << 20);
     }
 }
