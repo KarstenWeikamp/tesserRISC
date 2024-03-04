@@ -26,8 +26,6 @@ set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
 
-# Find Packages
-find_package(Catch2 3 REQUIRED)
 # Setup Catch2 Testing Environment
 file(GLOB CATCH_TESTS "*.cpp")
 
